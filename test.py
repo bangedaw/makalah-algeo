@@ -2,12 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def visualize_grover_process(n_qubits, target_index):
-    """
-    Simulasi Grover dengan visualisasi langkah demi langkah dan plot geometris.
-    """
     N = 2**n_qubits
     
-    # --- 1. Persiapan Matriks (Konsep: Transformasi Linear) ---
     H1 = np.array([[1, 1], [1, -1]]) / np.sqrt(2)
     
     H_n = H1
@@ -20,7 +16,7 @@ def visualize_grover_process(n_qubits, target_index):
     
     # Buat Superposisi Awal |s>
     state = H_n @ state
-    s_vec = state.copy().reshape(-1, 1) # Simpan vektor |s> untuk Diffuser
+    s_vec = state.copy().reshape(-1, 1)
     
     # Oracle Matrix: I - 2|w><w| (Matriks Diagonal)
     Oracle = np.eye(N, dtype=np.complex128)
@@ -29,7 +25,6 @@ def visualize_grover_process(n_qubits, target_index):
     # Diffuser Matrix: 2|s><s| - I (Refleksi Householder)
     Diffuser = 2 * (s_vec @ s_vec.conj().T) - np.eye(N)
     
-    # --- 2. Setup Geometri untuk Plotting ---
     w_vec = np.zeros(N)
     w_vec[target_index] = 1.0
     
@@ -37,7 +32,6 @@ def visualize_grover_process(n_qubits, target_index):
     s_prime = s_vec.flatten() - (np.vdot(w_vec, s_vec.flatten()) * w_vec)
     norm_s_prime = np.linalg.norm(s_prime)
     
-    # Hindari pembagian dengan nol jika s_prime sangat kecil
     if norm_s_prime > 1e-10:
         s_prime = s_prime / norm_s_prime
     
@@ -47,12 +41,10 @@ def visualize_grover_process(n_qubits, target_index):
         x = np.abs(np.vdot(s_prime, vec))     # Proyeksi ke Non-Target
         return x, y
 
-    # --- 3. Loop Iterasi Grover ---
     optimal_iter = int(np.pi / 4 * np.sqrt(N))
     print(f"Ruang Pencarian N={N}, Target Indeks={target_index}")
     print(f"Iterasi Optimal Teoritis: {optimal_iter}")
     
-    # PERBAIKAN 3: Inisialisasi list kosong dengan benar
     amplitudes_history = []
     coords_history = []
     
@@ -71,7 +63,6 @@ def visualize_grover_process(n_qubits, target_index):
         amplitudes_history.append(state.real.copy())
         coords_history.append(get_coords(state))
 
-    # --- 4. Visualisasi ---
     fig = plt.figure(figsize=(14, 6))
     
     # Plot A: Evolusi Amplitudo
@@ -80,8 +71,6 @@ def visualize_grover_process(n_qubits, target_index):
     indices = np.arange(N)
     ax1.bar(indices, amplitudes_history[0], color='blue', alpha=0.3, label='Awal (|s>)')
     ax1.bar(indices, amplitudes_history[-1], color='red', alpha=0.7, label=f'Akhir (Iterasi {optimal_iter})')
-    
-    # Highlight Target
     ax1.bar([target_index], [amplitudes_history[-1][target_index]], color='green')
     
     ax1.set_xlabel('Index State (Basis Komputasi)')
@@ -94,7 +83,6 @@ def visualize_grover_process(n_qubits, target_index):
     # Plot B: Rotasi Geometris
     ax2 = fig.add_subplot(1, 2, 2)
     
-    # PERBAIKAN 5: Unpacking koordinat (x, y) dengan benar
     xs = [c[0] for c in coords_history]
     ys = [c[1] for c in coords_history]
     
@@ -103,9 +91,7 @@ def visualize_grover_process(n_qubits, target_index):
     
     # Gambar panah
     for i in range(len(xs)):
-        # Sedikit adjustment agar panah terlihat rapi
         ax2.quiver(0, 0, xs[i], ys[i], angles='xy', scale_units='xy', scale=1, color='purple', alpha=0.3)
-        # Label langkah
         ax2.text(xs[i], ys[i] + 0.02, f'{i}', fontsize=10, fontweight='bold', color='darkblue')
 
     ax2.set_xlim(-0.1, 1.1)

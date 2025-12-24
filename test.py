@@ -30,7 +30,8 @@ def visualize_grover_process(n_qubits, target_index):
     Diffuser = 2 * (s_vec @ s_vec.conj().T) - np.eye(N)
     
     # --- 2. Setup Geometri untuk Plotting ---
-    w_vec = np.zeros(N); w_vec[target_index] = 1.0
+    w_vec = np.zeros(N)
+    w_vec[target_index] = 1.0
     
     # Vektor basis |s'> (Gram-Schmidt)
     s_prime = s_vec.flatten() - (np.vdot(w_vec, s_vec.flatten()) * w_vec)
@@ -111,7 +112,7 @@ def visualize_grover_process(n_qubits, target_index):
     ax2.set_ylim(-0.1, 1.1)
     ax2.set_xlabel("Komponen |s'> (Bukan Solusi)")
     ax2.set_ylabel("Komponen |w> (Solusi)")
-    ax2.set_title(f"Rotasi Vektor Keadaan (2D Plane)")
+    ax2.set_title("Rotasi Vektor Keadaan (2D Plane)")
     ax2.grid(True)
     
     circle = plt.Circle((0, 0), 1, color='gray', fill=False, linestyle=':')

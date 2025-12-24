@@ -1,1 +1,12 @@
 \section{Analisis Matematis Algoritma Grover}
+Algoritma Grover bekerja dengan melakukan rotasi pada vektor awal $|s\rangle$ hingga mendekati vektor solusi $|\omega\rangle$ melalui dua operasi matriks utama.
+
+\subsection{Menginisialisasi Superposisi Seragam}
+Pada mulanya, sistem akan disiapkan dalam keadaan superposisi seragam dengan menggunakan gerbang Hadamard. Vektor ini merupakan kombinasi linear dari semua basis dengan bobot yang sama. $$|s\rangle = \frac{1}{\sqrt{N}} \sum_{x=0}^{N-1} |x\rangle$$
+
+\subsection{Konstruksi Oracle ($U_\omega$) dan Diffuser ($U_s$)}
+Oracle adalah sebuah fungsi untuk menandai target atau solusi $|\omega \rangle$. Dalam bentuk matriks, Oracle adalah refleksi Householder terhadap vektor solusi $$U_\omega = I - 2|\omega\rangle\langle\omega|$$ Matriks ini akan membalik tanda hanya jika sistem tersebut berada pada keadaan $|\omega \rangle$.
+
+Diffuser adalah refleksi Householder terhadap vektor awal $|s \rangle$, tetapi dengan tanda yang dibalik $$U_s = 2|s\rangle\langle s| - I = -(I - 2|s\rangle\langle s|)$$ Matriks $|s\rangle \langle s|$ adalah \textit{outer product} yang setiap elemennya bernilai $1/N$
+\subsection{Rotasi Bidang sebagai Interpretasi Geometris}
+Langkah iterasi Grover adalah $G = U_s U_\omega$. Karena kita tau bahwa $U_s$ dan $U_\omega$ adalah sebuah matriks refleksi, maka bisa dikatakan bahwa komposisi $G$ adalah sebuah rotasi. \textit{State vector} berotasi pada bidang dua dimensi yang dibentuk oleh vektor solusi $|\omega \rangle$ dan vektor $|s'\rangle$ yang tegak lurus terhadap vektor solusi. Vektor akan berputar sejauh  $\theta \approx 2/\sqrt{N}$ pada setiap iterasinya. Probabilitas untuk menemukan solusi adalah proyeksi vektor keadaan ke sumbu solusi $|\omega \rangle$ yang dapat dihitung dengan persamaan berikut $$P(k) = \sin^2\left((2k+1)\frac{\theta}{2}\right)$$

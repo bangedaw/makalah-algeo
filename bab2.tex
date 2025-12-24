@@ -36,9 +36,9 @@ Selain \textit{inner product}, \textit{outer product} juga memegang peran pentin
 Hasil dari \textit{outer product} adalah sebuah matriks persegi berukuran $n \times n$. Jika $|u\rangle$ adalah sebuah vektor satuan, maka matriks $P$ adalah sebuah Matriks Proyeksi Ortogonal. Ini penting karena operasi pada algoritma Grover akan memproyeksikan \textit{state vektor} ke arah tertentu.
 
 \subsection{Matriks Unitary dan Nilai Eigen}
-Sebuah matriks persegi $A$ dikatakan unitary jika invers dari matriks tersebut adalah transpos konjugat nya, atau bisa dinotasikan sebagai $$U^{-1} = U^\dagger$$ $$U^\dagger U = I$$
+Sebuah matriks persegi $U$ dikatakan unitary jika invers dari matriks tersebut adalah transpos konjugat nya, atau bisa dinotasikan sebagai $$U^{-1} = U^\dagger$$ $$U^\dagger U = I$$
 
-Sifat penting dari sebuah matriks unitary adalah matriks ini memiliki nilai eigen dengan modulus bernilai 1, sehingga matriks ini akan mempertahankan norma vektornya. Jika sebuah vektor $v$ dikalikan dengan matrik unitary $A$, panjang vektor $v$ tidak akan berubah ($\|Uv\| = \|v\|$). Sifat ini akan menjamin bahwa selama proses komputasi kuantum terjadi, total probabilitas yang ada di dalam sistem akan selalu berjumlah 1. Dalam algoritma Grover, matriks akan direkayasa sehingga memiliki nilai eigen tertentu: 
+Sifat penting dari sebuah matriks unitary adalah matriks ini memiliki nilai eigen dengan modulus bernilai 1, sehingga matriks ini akan mempertahankan norma vektornya. Jika sebuah vektor $v$ dikalikan dengan matrik unitary $U$, panjang vektor $v$ tidak akan berubah ($\|Uv\| = \|v\|$). Sifat ini akan menjamin bahwa selama proses komputasi kuantum terjadi, total probabilitas yang ada di dalam sistem akan selalu berjumlah 1. Dalam algoritma Grover, matriks akan direkayasa sehingga memiliki nilai eigen tertentu: 
 \begin{itemize}
     \item Vektor solusi $|\omega\rangle$ adalah vektor eigen dari Matriks Oracle $U_{\omega}$ yang memiliki nilai eigen -1
     \item Vektor lain adalah vektor eigen dari Matriks Diffuser $U_{s}$ yang memiliki nilai eigen 1

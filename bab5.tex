@@ -1,1 +1,39 @@
 \section{Implementasi dan Eksperimen}
+Pengimplementasian simulasi dilakukan dalam Python untuk memvisualisasikan rotasi vektor.
+
+\subsection{Kode Simulasi}
+Berikut adalah kode Python dari \textit{function} yang digunakan untuk simulasi algoritma Grover. Beberapa library yang digunakan untuk membantu implementasi simulasi algoritma Grover adalah numpy dan matplotlib (untuk mempersingkat kode, digunakan singkatan np untuk numpy dan plt untuk matplotlib). Kode lengkap untuk simulasi ini bisa dilihat melalui laman github \url{https://github.com/bangedaw/makalah-algeo.git} atau pada bagian lampiran. 
+
+\subsection{Hasil Simulasi}
+Berikut adalah hasil simulasi yang dilakukan dengan menggunakan beberapa nilai $n$ yang berbeda 
+
+\begin{figure}[H]
+    \centerline{\includegraphics[width=0.8\linewidth]{n=4.png}}
+    \caption{Hasil simulasi untuk $n=4$}
+    \label{fig:n=4}
+\end{figure}
+
+\begin{figure}[H]
+    \centerline{\includegraphics[width=0.8\linewidth]{n=6.png}}
+    \caption{Hasil simulasi untuk $n=6$}
+    \label{fig:n=6}
+\end{figure}
+
+\begin{figure}[H]
+    \centerline{\includegraphics[width=0.8\linewidth]{n=8.png}}
+    \caption{Hasil simulasi untuk $n=8$}
+    \label{fig:n=8}
+\end{figure}
+
+\begin{figure}[H]
+    \centerline{\includegraphics[width=0.8\linewidth]{n=10.png}}
+    \caption{Hasil simulasi untuk $n=10$}
+    \label{fig:n=10}
+\end{figure}
+
+\subsection{Analisis Hasil dan Perbandingan}
+Hasil simulasi dengan menggunakan nilai $n=10$ menunjukkan beberapa perilaku yang sangat menarik, di mana
+\begin{itemize}
+    \item Probabilitas meningkat secara monoton hingga melewati $k=25$ hingga mendekati $|\omega\rangle$. Ini sangat dekat dengan prediksi teoritis $k \approx \frac{\pi}{4}\sqrt{1024} \approx 25.12$.
+    \item Jika iterasi terus dilanjutkan hingga melewati $k=25$, maka akan terjadi penurunan probabilitas kembali menuju ke nol. Ini membuktikan bahwa algoritma Grover bukanlah proses yang konvergen asimtotik, melainkan proses rotasi siklik. Secara geometris, \textit{state vector} telah melewati vektor target $|\omega\rangle$, dan ini berimplikasi pada keharustauan penguji tentang kapan harus berhenti melakukan iterasi. 
+\end{itemize}

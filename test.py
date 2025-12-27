@@ -109,4 +109,4 @@ def visualize_grover_process(n_qubits, target_index):
 
 # Jalankan simulasi
 if __name__ == "__main__":
-    visualize_grover_process(11, 90)
+    visualize_grover_process(10, 4)
